@@ -6,10 +6,10 @@ import {
   UpdateDateColumn,
   BaseEntity,
   ManyToOne,
-  JoinColumn,
-} from "typeorm";
-import Events from "./Events";
-import Users from "./Users";
+  JoinColumn
+} from 'typeorm'
+import Events from './Events'
+import Users from './Users'
 
 @Entity()
 export default class Guests extends BaseEntity {
@@ -17,32 +17,35 @@ export default class Guests extends BaseEntity {
   id: number;
 
   @Column({ default: false, nullable: true })
-  status: boolean;
+  statusRejected: boolean;
+
+  @Column({ default: false, nullable: true })
+  statusAccepted: boolean;
 
   @ManyToOne(() => Events, (event) => event.id, {
     eager: true,
-    onDelete: "CASCADE",
+    onDelete: 'CASCADE'
   })
-  @JoinColumn({ name: "eventId", referencedColumnName: "id" })
+  @JoinColumn({ name: 'eventId', referencedColumnName: 'id' })
   eventId: Events;
 
   @ManyToOne(() => Users, (user) => user.id, {
     eager: true,
-    onDelete: "CASCADE",
+    onDelete: 'CASCADE'
   })
-  @JoinColumn({ name: "userId", referencedColumnName: "id" })
+  @JoinColumn({ name: 'userId', referencedColumnName: 'id' })
   userId: Users;
 
   @ManyToOne(() => Users, (user) => user.id, {
     eager: true,
-    onDelete: "CASCADE",
+    onDelete: 'CASCADE'
   })
-  @JoinColumn({ name: "hostId", referencedColumnName: "id" })
+  @JoinColumn({ name: 'hostId', referencedColumnName: 'id' })
   hostId: Users;
 
-  @CreateDateColumn({ name: "createdAt" })
+  @CreateDateColumn({ name: 'createdAt' })
   createdAt: Date;
 
-  @UpdateDateColumn({ name: "updatedAt" })
+  @UpdateDateColumn({ name: 'updatedAt' })
   updatedAt: Date;
 }

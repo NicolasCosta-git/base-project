@@ -1,33 +1,33 @@
-import express from "express";
-import morgan from "morgan";
-import { createConnection } from "typeorm";
-import * as dotenv from "dotenv";
-import cors from "cors";
+import express from 'express'
+import morgan from 'morgan'
+import { createConnection } from 'typeorm'
+import * as dotenv from 'dotenv'
+import cors from 'cors'
 
-import router from "./routes/router";
+import router from './routes/router'
 
-dotenv.config();
+dotenv.config()
 
-const port = process.env.PORT;
+const port = process.env.PORT
 
-async function init() {
-  try {
-    await createConnection();
-  } catch (err) {
-    console.log(err);
-  }
+async function init () {
+    try {
+        await createConnection()
+    } catch (err) {
+        console.log(err)
+    }
 
-  const app = express();
-  app.use(express.urlencoded({ extended: false }));
-  app.use(express.json());
-  app.use(cors());
-  app.use(morgan("dev"));
+    const app = express()
+    app.use(express.urlencoded({ extended: false }))
+    app.use(express.json())
+    app.use(cors())
+    app.use(morgan('dev'))
 
-  app.use("/", router);
+    app.use('/', router)
 
-  app.listen(port, () => {
-    console.log(`Server running at: http://localhost:${port} 🔥`);
-  });
+    app.listen(port, () => {
+        console.log(`Server running at: http://localhost:${port} 🔥`)
+    })
 }
 
-init();
+init()

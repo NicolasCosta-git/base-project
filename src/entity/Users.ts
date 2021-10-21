@@ -1,11 +1,12 @@
+import { bcryptPasswordTransform } from '../helpers/bcrypt.helper'
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  BaseEntity,
-} from "typeorm";
+  BaseEntity
+} from 'typeorm'
 
 @Entity()
 export default class Users extends BaseEntity {
@@ -18,21 +19,21 @@ export default class Users extends BaseEntity {
   @Column()
   lastName: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
-  @Column()
+  @Column({ transformer: bcryptPasswordTransform })
   password: string;
 
-  @Column({ default: false, nullable: true })
+  @Column({ default: true, nullable: true })
   status: boolean;
 
   @Column({ nullable: true })
   photo: string;
 
-  @CreateDateColumn({ name: "createdAt" })
+  @CreateDateColumn({ name: 'createdAt' })
   createdAt: Date;
 
-  @UpdateDateColumn({ name: "updatedAt" })
+  @UpdateDateColumn({ name: 'updatedAt' })
   updatedAt: Date;
 }

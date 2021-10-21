@@ -6,9 +6,9 @@ import {
   JoinColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  BaseEntity,
-} from "typeorm";
-import Users from "./Users";
+  BaseEntity
+} from 'typeorm'
+import Users from './Users'
 
 @Entity()
 export default class Events extends BaseEntity {
@@ -30,16 +30,19 @@ export default class Events extends BaseEntity {
   @Column({ default: false, nullable: true })
   status: boolean;
 
+  @Column({ default: false, nullable: true })
+  statusDeleted: boolean
+
   @ManyToOne((type) => Users, (user) => user.id, {
-    onDelete: "CASCADE",
-    eager: true,
+    onDelete: 'CASCADE',
+    eager: true
   })
-  @JoinColumn({ name: "createdBy", referencedColumnName: "id" })
+  @JoinColumn({ name: 'createdBy', referencedColumnName: 'id' })
   createdBy: Users;
 
-  @CreateDateColumn({ name: "createdAt" })
+  @CreateDateColumn({ name: 'createdAt' })
   createdAt: Date;
 
-  @UpdateDateColumn({ name: "updatedAt" })
+  @UpdateDateColumn({ name: 'updatedAt' })
   updatedAt: Date;
 }

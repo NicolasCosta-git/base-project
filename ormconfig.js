@@ -7,5 +7,5 @@ module.exports = {
   database: process.env.DB_DATABASE,
   entities: ['dist/**/*{.ts,.js}', 'src/**/*{.ts,.js}'],
   synchronize: true,
-  dropSchema: false
+  dropSchema: true
 }

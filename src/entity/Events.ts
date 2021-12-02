@@ -38,7 +38,7 @@ export default class Events extends BaseEntity {
     eager: true
   })
   @JoinColumn({ name: 'createdBy', referencedColumnName: 'id' })
-  createdBy: Users;
+  users: Users;
 
   @CreateDateColumn({ name: 'createdAt' })
   createdAt: Date;
